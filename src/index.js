@@ -1,51 +1,47 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-import './index.css';
+import "./index.css";
+
+const books = [
+  {
+    id: 1,
+    img: `https://images-na.ssl-images-amazon.com/images/I/81AKVMzInqL._AC_UL200_SR200,200_.jpg`,
+    title: "They Both Die at the End",
+    author: "Adam Silvera",
+  },
+  {
+    id: 2,
+    img: `https://images-na.ssl-images-amazon.com/images/I/81drfTT9ZfL._AC_UL200_SR200,200_.jpg`,
+    title: "The Cat in the Hat",
+    author: "Dr. Seuss",
+  },
+  {
+    id: 3,
+    img: `https://images-na.ssl-images-amazon.com/images/I/81LoD65Jy6L._AC_UL200_SR200,200_.jpg`,
+    title: "Later",
+    author: "Stephen King",
+  },
+];
 
 function BookList() {
   return (
     <section className="booklist">
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      {books.map((book) => {
+        return <Book key={book.id} {...book} />;
+      })}
     </section>
   );
 }
 
-const Book = () => {
+const Book = ({ img, title, author }) => {
   return (
     <article className="book">
-      <Image />
-      <Title />
-      <Author />
+      <img src={img} alt="book cover" />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
     </article>
   );
 };
-
-const Image = () => (
-  <img
-    src="https://images-na.ssl-images-amazon.com/images/I/81AKVMzInqL._AC_UL200_SR200,200_.jpg"
-    alt=""
-  />
-);
-
-const Title = () => <h1>They Both Die at the End</h1>;
-
-const Author = () => <h4>Adam Silvera</h4>;
 
 ReactDom.render(<BookList />, document.getElementById("root"));
